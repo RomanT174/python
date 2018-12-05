@@ -1,2 +1,5 @@
-## 1. Edit your mysql and temp_folder settings in script.php
-## 2. Run the script "python3 script.py http://site.com/file.csv.gz"
+## 1. download.py download the archive and extracts 1 CSV file
+### use:python3 download.py http://site.com/file.csv.gz /path/to/save/
+## 2. fill_db.py created database and the table, fills(or updates) the table with CSV file.
+### edit database settings in fill_db.py
+###use:python3 fill_db.py /path/to/csv/file.csv
