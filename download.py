@@ -8,27 +8,19 @@ if len(sys.argv) != 3:
     exit()
 
 temp_folder = sys.argv[2]
-outfile = temp_folder+"file.csv.gz"
 filename = sys.argv[1]
-
-files = glob.glob(temp_folder+'*')
-for f in files:
-    os.remove(f)
+savefile = temp_folder+os.path.basename(filename)
 
 try:
-    urllib.request.urlretrieve(filename, outfile)
+    urllib.request.urlretrieve(filename, savefile)
 except:
     print("File NOT downloaded")
     exit()
 
 print("File downloaded")
-os.system("gzip -d "+outfile)
+os.system("gzip -d "+savefile)
 
-files = glob.glob(temp_folder+'*')
-if (len(files) == 0):
-    print("no files extracted")
-    exit()
+basefilename = os.path.basename(savefile).replace('.gz', '')
+csvfile = basefilename
 
-csvfile = files[0]
-
-print("extracted:"+csvfile)
+print("extracted:"+temp_folder+csvfile)
